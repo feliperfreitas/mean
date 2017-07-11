@@ -1,0 +1,56 @@
+<style>
+
+.login{
+	width: 600px;
+	background-color: white;
+	margin-top: 50px;
+	border-radius: 10px;
+}
+
+.login img{
+	height: 120px;
+}
+</style>
+
+<div class="container-fluid login">
+	<div class="row">
+		
+		<form name="formLogin" class="panel panel-default panel-body">
+			
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="text-center">
+						<img src="http://i0.wp.com/blog.adeel.io/wp-content/uploads/2016/11/mean-stack-1.png?fit=640%2C296">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<label>Usuário</label>
+					<input type="text" class="form-control" required="" minlength="4" name="usuario" data-ng-model="vm.Usuario.usuario" autofocus="">
+					<span data-ng-show="formLogin.usuario.$error.required && !formLogin.usuario.$pristine" style="font-weight: bold;" class="text-danger">Usuário é Obrigatório</span>
+					<span data-ng-show="formLogin.usuario.$error.minlength" style="font-weight: bold;" class="text-danger">Usuário deve conter no mínimo 4 caracteres</span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<label>Senha</label>
+					<input type="password" class="form-control" required="" minlength="4" name="senha" data-ng-model="vm.Usuario.senha">
+					<span data-ng-show="formLogin.senha.$error.required && !formLogin.senha.$pristine" style="font-weight: bold;" class="text-danger">Senha é Obrigatória</span>
+					<span data-ng-show="formLogin.senha.$error.minlength" style="font-weight: bold;" class="text-danger">Senha deve conter no mínimo 4 caracteres</span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<hr>
+					<button data-ng-disabled="formLogin.$invalid" type="button" class="btn btn-primary btn-block" data-ng-click="vm.Login()">Entrar</button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+</div>
