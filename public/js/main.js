@@ -2,6 +2,39 @@
 
 var app = angular.module('AppChamados', ['ui.router'])
 
+
+app.factory('Parametros', function(){
+  return{
+    nome_sistema: 'Curso MEAN Stack',
+    
+    administrador: {
+      menu: {
+        cadastros: [{
+          link: '#!/produto',
+          descricao: 'Produto'
+        },
+        {
+          link: '#!/usuario',
+          descricao: 'Usuários'
+        }],
+
+        relatorios: [{
+          link: '#!/produto',
+          descricao: 'Produto'
+        },
+        {
+          link: '#!/usuario',
+          descricao: 'Usuários'
+        }]
+
+      }
+    }
+
+  }
+})
+
+
+//Rotas da Aplicação
 app.config(myConfig)
 
 function myConfig($stateProvider, $urlRouterProvider) {
@@ -17,7 +50,9 @@ function myConfig($stateProvider, $urlRouterProvider) {
         controllerAs: 'vm'
       },
       'menu':{
-        templateUrl: './views/menu.html'
+        templateUrl: './views/menu.html',
+        controller:'MenuController',
+        controllerAs: 'vm'
       }
     }
   })
@@ -32,7 +67,9 @@ function myConfig($stateProvider, $urlRouterProvider) {
         controllerAs: 'vm'
       },
       'menu':{
-        templateUrl: './views/menu.html'
+        templateUrl: './views/menu.html',
+        controller:'MenuController',
+        controllerAs: 'vm'
       }
     }
   })
@@ -46,7 +83,9 @@ function myConfig($stateProvider, $urlRouterProvider) {
         controllerAs:'vm'
       },
       'menu':{
-        templateUrl:'./views/menu.html'
+        templateUrl:'./views/menu.html',
+        controller:'MenuController',
+        controllerAs: 'vm'
       }
     }
   })
@@ -61,7 +100,9 @@ function myConfig($stateProvider, $urlRouterProvider) {
         controllerAs:'vm'
       },
       'menu':{
-        templateUrl:'./views/menu.html'
+        templateUrl:'./views/menu.html',
+        controller:'MenuController',
+        controllerAs: 'vm'
       }
     }
   })
@@ -76,6 +117,9 @@ function myConfig($stateProvider, $urlRouterProvider) {
       }
     }
   })
+
+
+  
 
   $urlRouterProvider.otherwise('/home')
 

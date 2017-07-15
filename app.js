@@ -11,6 +11,7 @@ mongoose.connect('mongodb://127.0.0.1/mean')
 const TesteAPI   = require('./api/routes/testeRoutes')
 const UsuarioAPI = require('./api/routes/UsuarioRoutes')
 const ProdutoAPI = require('./api/routes/ProdutoRoutes')
+const LoginAPI = require('./api/routes/LoginRoutes')
 
 //var index = require('./routes/index');
 //var users = require('./routes/users');
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/teste', TesteAPI)
 app.use('/api/v1/usuario', UsuarioAPI)
 app.use('/api/v1/produto', ProdutoAPI)
+app.use('/api/v1/login', LoginAPI)
 
 
 // catch 404 and forward to error handler

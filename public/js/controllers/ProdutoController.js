@@ -6,7 +6,8 @@ app.controller('ProdutoController', ProdutoController)
 function ProdutoController($http, $state, $stateParams){
 
 	var vm = this
-
+	const token = localStorage.getItem('JwtToken')
+	
 	vm.Produto = {}
 	vm.Produtos = []
 
@@ -14,7 +15,8 @@ function ProdutoController($http, $state, $stateParams){
 	vm.ListarUm = function(id) {
 		$http({
 			method: 'GET',
-			url: '/api/v1/produto/retrieve/' + id
+			url: '/api/v1/produto/retrieve/' + id,
+			headers: {Authorization: token}
 		}).then(function(ret){
 			vm.Produto = ret.data
 		})
@@ -23,7 +25,8 @@ function ProdutoController($http, $state, $stateParams){
 	vm.ListarTodos = function(){
 		$http({
 			method: 'GET',
-			url: '/api/v1/produto/retrieve'
+			url: '/api/v1/produto/retrieve',
+			headers: {Authorization: token}
 		}).then(function(ret){
 			vm.Produtos = ret.data
 		})
@@ -33,12 +36,13 @@ function ProdutoController($http, $state, $stateParams){
 	vm.Gravar = function(){
 		// caso exista um ID na rota, significa que vai alterar
 
-		//if ( $stateParams.id ) {
-		if ( vm.Produto._id) {
+		if ( $stateParams.id ) {
+		//if ( vm.Produto._id) {
 			$http({
 				method: 'POST',
 				url: '/api/v1/produto/update',
-				data: vm.Produto
+				data: vm.Produto,
+				headers: {Authorization: token}
 			}).then(function(ret){
 				// Redireciona para o inicio removendo o ID da rota
 				//$state.go('cnsProduto')
@@ -49,7 +53,8 @@ function ProdutoController($http, $state, $stateParams){
 			$http({
 				method: 'POST',
 				url: '/api/v1/produto/create',
-				data: vm.Produto
+				data: vm.Produto,
+				headers: {Authorization: token}
 			}).then(function(ret){
 				vm.ListarTodos()
 				vm.Produto = {}
@@ -61,7 +66,8 @@ function ProdutoController($http, $state, $stateParams){
 		if(confirm('Atenção\nVocê realmente deseja deletar esse registro ?')){
 			$http({
 				method: 'GET',
-				url: '/api/v1/produto/delete/' + id
+				url: '/api/v1/produto/delete/' + id,
+				headers: {Authorization: token}
 			}).then(function(ret){
 				vm.ListarTodos()
 				alert('Produto deletado com sucesso.')

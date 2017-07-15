@@ -4,7 +4,9 @@ app.controller('UsuarioController', UsuarioController)
 
 function UsuarioController($http){
 
-	var vm = this
+	let vm = this
+
+	const token = localStorage.getItem('JwtToken')
 
 	vm.Usuario = {}
 	vm.Usuarios = []
@@ -12,7 +14,8 @@ function UsuarioController($http){
 	vm.ListarUm = function(id) {
 		$http({
 			method: 'GET',
-			url: '/api/v1/usuario/retrieve/' + id
+			url: '/api/v1/usuario/retrieve/' + id,
+			headers: {Authorization: token}
 		}).then(function(ret){
 			vm.Usuario = ret.data
 		})
@@ -21,7 +24,8 @@ function UsuarioController($http){
 	vm.ListarTodos = function(){
 		$http({
 			method: 'GET',
-			url: '/api/v1/usuario/retrieve'
+			url: '/api/v1/usuario/retrieve',
+			headers: {Authorization: token}
 		}).then(function(ret){
 			vm.Usuarios = ret.data
 		})
@@ -34,7 +38,8 @@ function UsuarioController($http){
 			$http({
 				method: 'POST',
 				url: '/api/v1/usuario/update',
-				data: vm.Usuario
+				data: vm.Usuario,
+				headers: {Authorization: token}
 			}).then(function(ret){
 				vm.ListarTodos()
 				vm.Usuario = {}
@@ -43,7 +48,8 @@ function UsuarioController($http){
 			$http({
 				method: 'POST',
 				url: '/api/v1/usuario/create',
-				data: vm.Usuario
+				data: vm.Usuario,
+				headers: {Authorization: token}
 			}).then(function(ret){
 				vm.ListarTodos()
 				vm.Usuario = {}
@@ -56,7 +62,8 @@ function UsuarioController($http){
 		if(confirm('Atenção\nVocê realmente deseja remover esse registro ?')){
 			$http({
 				method: 'GET',
-				url: '/api/v1/usuario/delete/' + id
+				url: '/api/v1/usuario/delete/' + id,
+				headers: {Authorization: token}
 			}).then(function(ret){
 				vm.ListarTodos()
 				alert('Usuário removido com sucesso.')

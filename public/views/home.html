@@ -1,3 +1,11 @@
+<select class="form-control" data-ng-model="testeSelect1">
+	<option data-ng-repeat="aux in vm.testeSelect" value="{{aux._id}}">{{aux.nome_completo}}</option>
+</select>
+<hr>
+<select class="form-control" data-ng-model="testeSelect2" data-ng-options="aux._id as aux.nome_completo for aux in vm.testeSelect">
+	
+</select>
+
 <div class="row">
 	<div class="col-md-6">
 		

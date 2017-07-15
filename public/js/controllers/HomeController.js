@@ -2,9 +2,17 @@
 
 app.controller('HomeController', HomeController)
 
-function HomeController(){
+function HomeController($http){
 
 	var vm = this
+
+	$http({
+		method: 'GET',
+		url: '/api/v1/usuario/retrieve',
+		headers: {Authorization: token}
+	}).then(function(retorno){
+		vm.testeSelect = retorno.data
+	})
 
 	//Objetos
 	vm.testefuncoes = {}
